@@ -235,7 +235,7 @@ export function Hero() {
 
                 </div>
 
-                {/* Mobile Static Typography */}
+                {/* Mobile Typography */}
 
                 <div className="flex flex-col md:hidden">
 
@@ -245,7 +245,7 @@ export function Hero() {
                         transition={{
                             duration: 1,
                         }}
-                        className="text-6xl leading-none font-bold tracking-tighter uppercase text-white"
+                        className="text-[4.4rem] leading-[0.9] font-bold tracking-[-0.06em] uppercase text-white pr-4"
                     >
                         SAKITHA
                     </motion.h1>
@@ -257,7 +257,7 @@ export function Hero() {
                             duration: 1,
                             delay: 0.1,
                         }}
-                        className="text-6xl leading-none font-bold tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white"
+                        className="text-[4.4rem] leading-[0.9] font-bold tracking-[-0.06em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white pr-4"
                     >
                         PALLIYAGURU
                     </motion.h1>
