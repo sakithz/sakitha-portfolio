@@ -245,7 +245,7 @@ export function Hero() {
                         transition={{
                             duration: 1,
                         }}
-                        className="text-[3.5rem] leading-[0.88] font-bold tracking-[-0.07em] uppercase text-white"
+                        className="text-[4rem] leading-[0.9] font-bold tracking-[-0.06em] uppercase text-white"
                     >
                         SAKITHA
                     </motion.h1>
