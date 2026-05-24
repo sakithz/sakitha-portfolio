@@ -183,7 +183,7 @@ export function Hero() {
 
     return (
 
-        <section className="relative w-full h-screen flex flex-col justify-center px-8 md:px-16 lg:px-24 bg-black text-white overflow-hidden">
+        <section className="relative w-full h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 bg-black text-white overflow-hidden">
 
             {/* Background Effects */}
 
@@ -237,7 +237,7 @@ export function Hero() {
 
                 {/* Mobile Typography */}
 
-                <div className="flex flex-col md:hidden">
+                <div className="flex flex-col md:hidden overflow-hidden">
 
                     <motion.h1
                         initial={{ opacity: 0, y: 80 }}
@@ -245,7 +245,7 @@ export function Hero() {
                         transition={{
                             duration: 1,
                         }}
-                        className="text-[4.4rem] leading-[0.9] font-bold tracking-[-0.06em] uppercase text-white pr-4"
+                        className="text-[3.5rem] leading-[0.88] font-bold tracking-[-0.07em] uppercase text-white"
                     >
                         SAKITHA
                     </motion.h1>
@@ -257,7 +257,7 @@ export function Hero() {
                             duration: 1,
                             delay: 0.1,
                         }}
-                        className="text-[4.4rem] leading-[0.9] font-bold tracking-[-0.06em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white pr-4"
+                        className="text-[3.5rem] leading-[0.88] font-bold tracking-[-0.07em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white"
                     >
                         PALLIYAGURU
                     </motion.h1>
@@ -337,7 +337,7 @@ export function Hero() {
                     delay: 2,
                     duration: 1,
                 }}
-                className="absolute bottom-16 left-8 md:left-16 lg:left-24 z-10 flex flex-col items-center gap-2"
+                className="absolute bottom-16 left-6 md:left-16 lg:left-24 z-10 flex flex-col items-center gap-2"
             >
 
         <span className="text-[10px] uppercase tracking-[0.3em] text-white/30 rotate-[-90deg] translate-y-[-24px] origin-bottom-left">
