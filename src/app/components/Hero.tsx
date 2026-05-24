@@ -196,40 +196,73 @@ export function Hero() {
 
             <div className="flex flex-col z-10 relative gap-2">
 
-                {/* Hover Scroll Typography */}
+                {/* Desktop Hover Animation */}
 
-                <motion.div
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 1,
-                        ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="relative overflow-hidden cursor-default h-[5.5rem] md:h-[8rem] lg:h-[10rem]"
-                >
+                <div className="hidden md:block">
 
                     <motion.div
-                        whileHover={{
-                            y: window.innerWidth < 768 ? -88 : -160,
-                        }}
+                        initial={{ opacity: 0, y: 100 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{
-                            duration: 0.6,
-                            ease: [0.76, 0, 0.24, 1],
+                            duration: 1,
+                            ease: [0.16, 1, 0.3, 1],
                         }}
-                        className="flex flex-col"
+                        className="relative overflow-hidden cursor-default h-[8rem] lg:h-[10rem]"
                     >
 
-                        <h1 className="text-6xl md:text-8xl lg:text-[10rem] leading-none font-bold tracking-tighter uppercase text-white">
-                            SAKITHA
-                        </h1>
+                        <motion.div
+                            whileHover={{
+                                y: -160,
+                            }}
+                            transition={{
+                                duration: 0.6,
+                                ease: [0.76, 0, 0.24, 1],
+                            }}
+                            className="flex flex-col"
+                        >
 
-                        <h1 className="text-6xl md:text-8xl lg:text-[10rem] leading-none font-bold tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">
-                            PALLIYAGURU
-                        </h1>
+                            <h1 className="text-8xl lg:text-[10rem] leading-none font-bold tracking-tighter uppercase text-white">
+                                SAKITHA
+                            </h1>
+
+                            <h1 className="text-8xl lg:text-[10rem] leading-none font-bold tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">
+                                PALLIYAGURU
+                            </h1>
+
+                        </motion.div>
 
                     </motion.div>
 
-                </motion.div>
+                </div>
+
+                {/* Mobile Static Typography */}
+
+                <div className="flex flex-col md:hidden">
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 80 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            duration: 1,
+                        }}
+                        className="text-6xl leading-none font-bold tracking-tighter uppercase text-white"
+                    >
+                        SAKITHA
+                    </motion.h1>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 80 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            duration: 1,
+                            delay: 0.1,
+                        }}
+                        className="text-6xl leading-none font-bold tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white"
+                    >
+                        PALLIYAGURU
+                    </motion.h1>
+
+                </div>
 
                 {/* Divider */}
 
