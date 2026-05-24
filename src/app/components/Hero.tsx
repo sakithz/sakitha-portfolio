@@ -245,7 +245,7 @@ export function Hero() {
                         transition={{
                             duration: 1,
                         }}
-                        className="text-[4rem] leading-[0.9] font-bold tracking-[-0.06em] uppercase text-white"
+                        className="text-[3.3rem] leading-[0.92] font-black tracking-[-0.045em] uppercase text-white"
                     >
                         SAKITHA
                     </motion.h1>
@@ -257,7 +257,7 @@ export function Hero() {
                             duration: 1,
                             delay: 0.1,
                         }}
-                        className="text-[4rem] leading-[0.9] font-bold tracking-[-0.06em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white"
+                        className="text-[3.3rem] leading-[0.92] font-black tracking-[-0.045em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white"
                     >
                         PALLIYAGURU
                     </motion.h1>
