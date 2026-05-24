@@ -75,7 +75,7 @@ const sections = [
 
                 tools: ["Spring Boot", "Java", "OOP","HTML","CSS","Java Script"],
 
-                github: "https://github.com/yourusername/hostel-management-system",
+                github: "https://github.com/lowaga2003-code/VehicleRentalWeb",
             },
 
 
