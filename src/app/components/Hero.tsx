@@ -114,7 +114,7 @@ export function Hero() {
                     <p className="lg:col-span-7 text-sm md:text-base text-white/50 leading-relaxed font-light max-w-xl">
 
                         Blending technology, creativity, and brand thinking into meaningful,
-                        high-fidelity interactive digital ecosystem experiences.
+                        high-fidelity interactive experiences.
 
                     </p>
 
