@@ -75,7 +75,7 @@ export function Hero() {
                         showCursor={true}
                         cursorCharacter="_"
                         cursorClassName="text-white"
-                        className="text-[14vw] sm:text-[11vw] lg:text-[8rem] font-black uppercase text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60 block"
+                        className="text-[10vw] sm:text-[11vw] lg:text-[8rem] font-black uppercase text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60 block"
                     />
 
                 </div>
