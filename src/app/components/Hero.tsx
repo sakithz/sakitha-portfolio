@@ -1,323 +1,150 @@
-import { motion, useMotionValue, useTransform, useSpring } from "motion/react";
-import { useEffect } from "react";
-
-// Grain Overlay
-function GrainOverlay() {
-    return (
-        <svg
-            className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-[0.05]"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <filter id="grain">
-                <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.75"
-                    numOctaves="4"
-                    stitchTiles="stitch"
-                />
-                <feColorMatrix type="saturate" values="0" />
-            </filter>
-
-            <rect width="100%" height="100%" filter="url(#grain)" />
-        </svg>
-    );
-}
-
-// Grid Lines
-function GridLines() {
-    return (
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-
-            {[15, 35, 55, 75, 90].map((top, i) => (
-                <motion.div
-                    key={`h${i}`}
-                    className="absolute w-full h-[1px] bg-white"
-                    style={{ top: `${top}%` }}
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    animate={{ scaleX: 1, opacity: 0.04 }}
-                    transition={{
-                        duration: 1.8,
-                        delay: 0.1 * i,
-                        ease: [0.16, 1, 0.3, 1],
-                    }}
-                />
-            ))}
-
-            {[10, 25, 50, 75, 90].map((left, i) => (
-                <motion.div
-                    key={`v${i}`}
-                    className="absolute h-full w-[1px] bg-white"
-                    style={{ left: `${left}%` }}
-                    initial={{ scaleY: 0, opacity: 0 }}
-                    animate={{ scaleY: 1, opacity: 0.04 }}
-                    transition={{
-                        duration: 2,
-                        delay: 0.15 * i,
-                        ease: [0.16, 1, 0.3, 1],
-                    }}
-                />
-            ))}
-
-        </div>
-    );
-}
-
-// Morph Blob
-function MorphBlob() {
-    return (
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] pointer-events-none z-0">
-
-            <motion.div
-                className="w-full h-full rounded-full border border-white/10"
-                animate={{
-                    scale: [1, 1.08, 0.96, 1.04, 1],
-
-                    borderRadius: [
-                        "60% 40% 30% 70% / 60% 30% 70% 40%",
-                        "30% 60% 70% 40% / 50% 60% 30% 60%",
-                        "60% 40% 50% 60% / 30% 70% 40% 60%",
-                        "40% 60% 30% 70% / 60% 40% 70% 30%",
-                        "60% 40% 30% 70% / 60% 30% 70% 40%",
-                    ],
-                }}
-                transition={{
-                    duration: 14,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            />
-
-        </div>
-    );
-}
-
-// Spotlight
-function Spotlight() {
-
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springX = useSpring(mouseX, {
-        stiffness: 50,
-        damping: 20,
-    });
-
-    const springY = useSpring(mouseY, {
-        stiffness: 50,
-        damping: 20,
-    });
-
-    useEffect(() => {
-
-        const move = (e: MouseEvent) => {
-            mouseX.set(e.clientX);
-            mouseY.set(e.clientY);
-        };
-
-        window.addEventListener("mousemove", move);
-
-        return () => window.removeEventListener("mousemove", move);
-
-    }, []);
-
-    return (
-        <motion.div
-            className="absolute inset-0 z-0 pointer-events-none"
-            style={{
-                background: useTransform(
-                    [springX, springY],
-                    ([x, y]) =>
-                        `radial-gradient(350px circle at ${x}px ${y}px, rgba(255,255,255,0.05) 0%, transparent 70%)`
-                ),
-            }}
-        />
-    );
-}
-
-// Bottom Ticker
-function Ticker() {
-
-    const items = [
-        "IT",
-        "Branding",
-        "Photography",
-        "Entrepreneurship",
-        "AI",
-        "Marketing",
-        "Developer",
-    ];
-
-    const repeated = [...items, ...items];
-
-    return (
-        <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-3 overflow-hidden">
-
-            <motion.div
-                className="flex gap-12 whitespace-nowrap"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{
-                    duration: 18,
-                    repeat: Infinity,
-                    ease: "linear",
-                }}
-            >
-
-                {repeated.map((item, i) => (
-
-                    <span
-                        key={i}
-                        className="text-[10px] uppercase tracking-[0.3em] text-white/20 font-medium flex-shrink-0"
-                    >
-            {item} <span className="text-white/10 mx-2">◆</span>
-          </span>
-
-                ))}
-
-            </motion.div>
-
-        </div>
-    );
-}
+import { motion } from "motion/react";
+import PixelSnow from "./effects/PixelSnow";
+import TextType from "./ui/TextType";
 
 export function Hero() {
 
     return (
 
-        <section className="relative w-full h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 bg-black text-white overflow-hidden">
+        <section className="relative w-full h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 bg-[#0a0a0a] text-white overflow-hidden font-sans select-none">
 
-            {/* Background Effects */}
+            {/* Background Effect Overlay */}
 
-            <GrainOverlay />
-            <GridLines />
-            <MorphBlob />
-            <Spotlight />
+            <div className="absolute inset-0 pointer-events-none opacity-40 z-0">
+                <PixelSnow />
+            </div>
+
+            {/* Structural Border */}
+
+            <div className="absolute inset-4 md:inset-8 pointer-events-none border border-white/5 z-0" />
+
+            {/* Top Navigation */}
+
+            <div className="z-10 flex justify-between items-start text-[10px] tracking-[0.25em] uppercase text-white/40 font-mono w-full">
+
+                <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                        duration: 0.8,
+                        ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="flex items-center gap-2"
+                >
+
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+
+                    Status // Available 2026
+
+                </motion.div>
+
+            </div>
 
             {/* Main Content */}
 
-            <div className="flex flex-col z-10 relative gap-2">
+            <div className="flex flex-col z-10 relative gap-3 my-auto max-w-7xl w-full mx-auto justify-center">
 
-                {/* Desktop Hover Animation */}
+                {/* Intro */}
 
-                <div className="hidden md:block">
+                <motion.p
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        duration: 0.8,
+                        ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="text-white/40 text-xs md:text-sm tracking-[0.3em] uppercase font-mono pl-1"
+                >
+                    Hey there. I’m
+                </motion.p>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 1,
-                            ease: [0.16, 1, 0.3, 1],
-                        }}
-                        className="relative overflow-hidden cursor-default h-[8rem] lg:h-[10rem]"
-                    >
+                {/* Main Heading */}
 
-                        <motion.div
-                            whileHover={{
-                                y: -160,
-                            }}
-                            transition={{
-                                duration: 0.6,
-                                ease: [0.76, 0, 0.24, 1],
-                            }}
-                            className="flex flex-col"
-                        >
+                <div className="leading-[0.8] tracking-[-0.05em] select-none w-fit">
 
-                            <h1 className="text-8xl lg:text-[10rem] leading-none font-bold tracking-tighter uppercase text-white">
-                                SAKITHA
-                            </h1>
+                    <TextType
+                        text={[
+                            "SAKITHA",
+                            "PALLIYAGURU",
 
-                            <h1 className="text-8xl lg:text-[10rem] leading-none font-bold tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">
-                                PALLIYAGURU
-                            </h1>
-
-                        </motion.div>
-
-                    </motion.div>
-
-                </div>
-
-                {/* Mobile Typography */}
-
-                <div className="flex flex-col md:hidden overflow-hidden">
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 80 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 1,
-                        }}
-                        className="text-[3.3rem] leading-[0.92] font-black tracking-[-0.045em] uppercase text-white"
-                    >
-                        SAKITHA
-                    </motion.h1>
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 80 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 1,
-                            delay: 0.1,
-                        }}
-                        className="text-[4rem] leading-[0.9] font-black tracking-[-0.06em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white"
-                    >
-                        PALLIYAGURU
-                    </motion.h1>
+                        ]}
+                        typingSpeed={110}
+                        deletingSpeed={50}
+                        pauseDuration={1500}
+                        loop={true}
+                        showCursor={true}
+                        cursorCharacter="_"
+                        cursorClassName="text-white"
+                        className="text-[14vw] sm:text-[11vw] lg:text-[8rem] font-black uppercase text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60 block"
+                    />
 
                 </div>
 
                 {/* Divider */}
 
-                <motion.div
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{
-                        delay: 1,
-                        duration: 1.2,
-                        ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="h-[1px] bg-white/10 mt-8 origin-left"
-                />
+                <div className="relative w-full my-4">
 
-                {/* Description */}
+                    <motion.div
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{
+                            duration: 1.4,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="h-[1px] bg-gradient-to-r from-white/25 via-white/10 to-transparent origin-left"
+                    />
+
+                </div>
+
+                {/* Bottom Content */}
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                        delay: 1.2,
-                        duration: 0.9,
+                        delay: 0.3,
+                        duration: 1,
                         ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="flex flex-col md:flex-row gap-6 md:gap-24 text-sm md:text-base text-white/40 max-w-3xl mt-8 md:mt-12"
+                    className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full mt-2"
                 >
 
-                    <p className="leading-relaxed">
-                        IT Undergraduate at SLIIT passionate about IT,
-                        marketing, branding, photography, and entrepreneurship.
+                    {/* Description */}
+
+                    <p className="lg:col-span-7 text-sm md:text-base text-white/50 leading-relaxed font-light max-w-xl">
+
+                        Blending technology, creativity, and brand thinking into meaningful,
+                        high-fidelity interactive digital ecosystem experiences.
+
                     </p>
 
-                    <div className="flex flex-wrap gap-4 uppercase tracking-widest text-xs font-bold items-start">
+                    {/* Skills */}
+
+                    <div className="lg:col-span-5 flex flex-wrap gap-2 lg:justify-end items-start">
 
                         {[
-                            "IT / AI",
+                            "Developing",
                             "Marketing / Branding",
                             "Photography",
-                        ].map((tag, i) => (
+                        ].map((skill, index) => (
 
                             <motion.span
-                                key={tag}
-                                className="border-b border-white/20 pb-1 cursor-default"
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{
-                                    delay: 1.5 + i * 0.1,
-                                    duration: 0.5,
-                                }}
+                                key={index}
                                 whileHover={{
-                                    color: "#ffffff",
-                                    borderColor: "rgba(255,255,255,0.6)",
+                                    scale: 1.04,
+                                    borderColor: "rgba(255,255,255,0.35)",
+                                    color: "rgba(255,255,255,1)",
                                 }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 25,
+                                }}
+                                className="border border-white/10 bg-white/[0.02] backdrop-blur-sm px-3 py-1.5 text-[10px] md:text-xs tracking-wider uppercase font-mono text-white/60 cursor-crosshair transition-colors"
                             >
-                                {tag}
+
+                                {skill}
+
                             </motion.span>
 
                         ))}
@@ -328,41 +155,39 @@ export function Hero() {
 
             </div>
 
-            {/* Scroll Indicator */}
+            {/* Bottom Navigation */}
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                    delay: 2,
-                    duration: 1,
-                }}
-                className="absolute bottom-16 left-6 md:left-16 lg:left-24 z-10 flex flex-col items-center gap-2"
-            >
+            <div className="z-10 flex justify-between items-end w-full font-mono text-[10px] tracking-[0.2em] text-white/30">
 
-        <span className="text-[10px] uppercase tracking-[0.3em] text-white/30 rotate-[-90deg] translate-y-[-24px] origin-bottom-left">
-          Scroll
-        </span>
+                <div>
+                    [ SCROLL_TO_EXPLORE ]
+                </div>
 
-                <div className="w-[1px] h-16 bg-white/10 mt-4 overflow-hidden relative">
+                {/* Scroll Indicator */}
 
-                    <motion.div
-                        className="w-full h-1/2 bg-white/60"
-                        animate={{ y: [-32, 64] }}
-                        transition={{
-                            duration: 1.4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                    />
+                <div className="flex flex-col items-center gap-4 group cursor-pointer mix-blend-difference">
+
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-white/30 group-hover:text-white/80 transition-colors duration-300">
+                        Scroll Down
+                    </span>
+
+                    <div className="w-[1px] h-14 bg-white/10 overflow-hidden relative">
+
+                        <motion.div
+                            className="w-full h-1/2 bg-white/70"
+                            animate={{ y: [-28, 56] }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: [0.25, 1, 0.5, 1],
+                            }}
+                        />
+
+                    </div>
 
                 </div>
 
-            </motion.div>
-
-            {/* Ticker */}
-
-            <Ticker />
+            </div>
 
         </section>
     );

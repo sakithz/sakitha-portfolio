@@ -29,7 +29,7 @@ export default function App() {
                         href="#projects"
                         className="hover-target cursor-pointer hover:text-white transition"
                     >
-                        Works
+                        Work
                     </a>
 
                     <a
@@ -43,7 +43,7 @@ export default function App() {
                         href="#contact"
                         className="hover-target cursor-pointer hover:text-white transition"
                     >
-                        Contact
+                        Connect
                     </a>
                 </div>
 
