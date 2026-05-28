@@ -14,7 +14,7 @@ export function Hero() {
                 <PixelSnow />
             </div>
 
-            {/* Structural Border */}
+
 
 
 
@@ -159,9 +159,7 @@ export function Hero() {
 
             <div className="z-10 flex justify-between items-end w-full font-mono text-[10px] tracking-[0.2em] text-white/30">
 
-                <div>
-                    [ SCROLL_TO_EXPLORE ]
-                </div>
+
 
                 {/* Scroll Indicator */}
 
