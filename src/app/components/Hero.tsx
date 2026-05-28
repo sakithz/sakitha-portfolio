@@ -16,7 +16,7 @@ export function Hero() {
 
             {/* Structural Border */}
 
-            <div className="absolute inset-4 md:inset-8 pointer-events-none border border-white/5 z-0" />
+
 
             {/* Top Navigation */}
 
