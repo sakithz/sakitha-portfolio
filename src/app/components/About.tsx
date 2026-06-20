@@ -197,7 +197,7 @@ export function About() {
           >
 
             <TiltedCard
-                imageSrc="/about/profile.jpeg"
+                imageSrc="/about/profile.JPG"
                 altText="Sakitha"
                 captionText="SAKITHA"
                 containerHeight="420px"

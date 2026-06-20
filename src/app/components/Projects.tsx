@@ -279,7 +279,7 @@ export function Projects() {
                                     {section.type ===
                                         "photography" && (
 
-                                            <div className="w-full h-[500px] mt-10 mb-0">
+                                            <div className="w-full h-[1050px] md:h-[750px] mt-10 mb-10 md:mb-6">
 
                                                 <Masonry
                                                     items={
